@@ -5,11 +5,10 @@ import {
   CameraSource,
   Photo,
 } from '@capacitor/camera';
-
 @Injectable({
   providedIn: 'root',
 })
-export class PictureService {
+export class PhotoService {
   constructor() {}
   async takePhoto() {
     const photo = await Camera.getPhoto({
