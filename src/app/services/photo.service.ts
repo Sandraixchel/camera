@@ -5,6 +5,8 @@ import {
   CameraSource,
   Photo,
 } from '@capacitor/camera';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Preferences } from '@capacitor/preferences';
 @Injectable({
   providedIn: 'root',
 })
@@ -12,6 +14,14 @@ export class PhotoService {
   constructor() {}
   async takePhoto() {
     const photo = await Camera.getPhoto({
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+      quality: 100,
+    });
+  }
+  public async addNewToGallery() {
+    // Take a photo
+    const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
       quality: 100,
