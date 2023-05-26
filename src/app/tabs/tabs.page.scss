@@ -1,1 +1,13 @@
+ion-tabs {
+  --ion-font-family: "Roboto", sans-serif;
+  font-size: 30px;
+}
 
+ion-header {
+  --ion-text-color: #555;
+}
+
+ion-content {
+  --background: linear-gradient(#3dc2ff, #ffff) !important;
+  --ion-text-color: #222;
+}
