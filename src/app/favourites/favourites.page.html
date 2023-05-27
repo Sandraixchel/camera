@@ -4,10 +4,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">favourites</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-button color="secondary" size="full" [routerLink]="['/tab1']"
+    >Back to Home</ion-button
+  >
+  <ion-grid>
+    <ion-row>
+      <!-- Declare different sizes for various types of screen, is stacked on a medium screen and below -->
+      <ion-col
+        size="12"
+        size-md="4"
+        *ngFor="let photo of photoService.favourites; index as position"
+      >
+        <ion-img
+          [src]="photo.webviewPath"
+          (click)="photoService.addtoFavourites(photo)"
+        ></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

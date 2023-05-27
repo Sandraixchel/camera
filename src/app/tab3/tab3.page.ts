@@ -8,4 +8,8 @@ import { PhotoService } from '../services/photo.service';
 })
 export class Tab3Page {
   constructor(public photoService: PhotoService) {}
+
+  async ngOnInit() {
+    await this.photoService.loadSaved();
+  }
 }

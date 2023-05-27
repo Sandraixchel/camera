@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PhotoService } from '../services/photo.service';
 
 @Component({
   selector: 'app-favourites',
@@ -6,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favourites.page.scss'],
 })
 export class FavouritesPage implements OnInit {
+  constructor(public photoService: PhotoService) {}
 
-  constructor() { }
-
-  ngOnInit() {
+  async ngOnInit() {
+    // await this.photoService.loadSaved();
   }
-
 }
