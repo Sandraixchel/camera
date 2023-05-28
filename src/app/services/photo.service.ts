@@ -102,6 +102,14 @@ export class PhotoService {
       value: JSON.stringify(this.photos),
     });
   }
+  public async removeFavourites(photo: UserPhoto) {
+    photo.isFavourite = false;
+    console.log('Photo removed from your favourites' + photo);
+    Preferences.set({
+      key: this.PHOTO_STORAGE,
+      value: JSON.stringify(this.photos),
+    });
+  }
 
   // Filtering through the photos array to see whoich ones have isFavourite=true
   get favourites() {

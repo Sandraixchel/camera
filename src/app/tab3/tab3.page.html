@@ -16,10 +16,26 @@
         size-md="4"
         *ngFor="let photo of photoService.photos; index as position"
       >
-        <ion-img
-          [src]="photo.webviewPath"
-          (click)="photoService.addtoFavourites(photo)"
-        ></ion-img>
+        <ion-card>
+          <ion-img [src]="photo.webviewPath"></ion-img>
+          <ion-card-content>
+            <ion-icon
+              name="heart"
+              *ngIf="photo.isFavourite; else noFavourite"
+            ></ion-icon>
+            <ion-icon
+              name="heart-dislike-outline"
+              (click)="photoService.removeFavourites(photo)"
+              *ngIf="photo.isFavourite"
+            ></ion-icon>
+            <ng-template #noFavourite>
+              <ion-icon
+                name="heart-outline"
+                (click)="photoService.addtoFavourites(photo)"
+              ></ion-icon>
+            </ng-template>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
