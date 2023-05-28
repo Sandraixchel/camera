@@ -16,6 +16,7 @@
         size-md="4"
         *ngFor="let photo of photoService.photos; index as position"
       >
+        <!-- Card to display picture and icons to add pictures to "Favourites" or remove them from "Favourites" -->
         <ion-card>
           <ion-img [src]="photo.webviewPath"></ion-img>
           <ion-card-content>
@@ -34,6 +35,16 @@
                 (click)="photoService.addtoFavourites(photo)"
               ></ion-icon>
             </ng-template>
+            <ion-item>
+              <ion-input
+                label="Description"
+                placeholder="Add a description to your photo"
+                [(ngModel)]="photo.description"
+              ></ion-input>
+              <ion-button fill="clear" (click)="photoService.saveDescription()"
+                >Save Description</ion-button
+              >
+            </ion-item>
           </ion-card-content>
         </ion-card>
       </ion-col>

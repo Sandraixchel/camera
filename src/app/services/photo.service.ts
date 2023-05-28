@@ -53,6 +53,7 @@ export class PhotoService {
       return {
         filepath: filename,
         webviewPath: photo.webPath,
+        isFavourite: false, // create a boolean variable to set all poctures as NOT favourites until the user changes it
       };
     }
   }
@@ -63,13 +64,14 @@ export class PhotoService {
       source: CameraSource.Camera,
       quality: 100,
     });
-    this.photos.unshift({
-      filepath: 'tbd',
-      webviewPath: photo.webPath,
-      isFavourite: false, // create a boolean variable to set all poctures as NOT favourites until the user changes it
-    });
+    // this.photos.unshift({
+    //   filepath: 'tbd',
+    //   webviewPath: photo.webPath,
+    //   isFavourite: false, // create a boolean variable to set all poctures as NOT favourites until the user changes it
+    // });
     console.log(this.photos.length);
-    this.saveToDevice(photo);
+    const savedImage = (await this.saveToDevice(photo)) as UserPhoto;
+    this.photos.unshift(savedImage);
     Preferences.set({
       key: this.PHOTO_STORAGE,
       value: JSON.stringify(this.photos),
@@ -102,9 +104,18 @@ export class PhotoService {
       value: JSON.stringify(this.photos),
     });
   }
+  // Funtion to change the property "isFavorite" to false from true
   public async removeFavourites(photo: UserPhoto) {
     photo.isFavourite = false;
     console.log('Photo removed from your favourites' + photo);
+    Preferences.set({
+      key: this.PHOTO_STORAGE,
+      value: JSON.stringify(this.photos),
+    });
+  }
+
+  //Function to save description data
+  public async saveDescription() {
     Preferences.set({
       key: this.PHOTO_STORAGE,
       value: JSON.stringify(this.photos),
@@ -121,4 +132,5 @@ export interface UserPhoto {
   filepath: string;
   webviewPath?: string;
   isFavourite: boolean;
+  description?: string;
 }
