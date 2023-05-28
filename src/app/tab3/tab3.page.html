@@ -5,9 +5,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-button color="secondary" size="full" [routerLink]="['/favourites']"
+  <ion-button color="success" size="full" [routerLink]="['/favourites']"
     >Favourites</ion-button
   >
+  <ion-card>
+    <ion-card-content>
+      You can add pictures to Favourites by clicking on the heart
+    </ion-card-content>
+  </ion-card>
   <ion-grid>
     <ion-row>
       <!-- Declare different sizes for various types of screen, is stacked on a medium screen and below -->
@@ -38,11 +43,14 @@
             <ion-item>
               <ion-input
                 label="Description"
-                placeholder="Add a description to your photo"
+                placeholder="First Day in Rome"
                 [(ngModel)]="photo.description"
               ></ion-input>
-              <ion-button fill="clear" (click)="photoService.saveDescription()"
-                >Save Description</ion-button
+              <ion-button
+                color="success"
+                fill="clear"
+                (click)="photoService.saveDescription()"
+                >Save</ion-button
               >
             </ion-item>
           </ion-card-content>
